@@ -53,7 +53,10 @@ export class LoginService {
     return this.http.get(this.serverUrl, {headers: headers})
            .map((data) => {
              return data.json();
-           })
+           }).catch((error) => {
+              location.reload();
+              return Observable.throw(error);
+           });
   }
 
   /*

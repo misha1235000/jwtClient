@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './login.service';
+import { MatSnackBar } from '@angular/material';
 
 function getCookie(name) {
   let ca: Array<string> = document.cookie.split(';');
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private snackBar: MatSnackBar) { }
   
   login() {
     this.loginService.login(this.email, this.password).subscribe((data) => {
@@ -53,8 +54,8 @@ export class LoginComponent implements OnInit {
 
   getEmail() {
     this.loginService.getEmail().subscribe((data) => {
-      console.log(data.email);
-    });
+      this.snackBar.open(data.email, '', {duration: 1000});
+  });
   }
 
   ngOnInit() {
