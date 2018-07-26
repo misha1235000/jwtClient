@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.email, this.password).subscribe((data) => {
       if (data.auth) {
         let expiresDate: Date = new Date();
-        expiresDate.setTime(expiresDate.getTime() + 1 * 24 * 60 * 60 * 1000);
+        expiresDate.setTime(expiresDate.getTime() + 1 * 1 * 1 * 60 * 1000);
 
         let expires: string = `${expiresDate.toUTCString()}`;
 
@@ -48,6 +48,12 @@ export class LoginComponent implements OnInit {
         document.cookie = 'token=;expires=;Thu, 01 Jan 1970 00:00:01 GMT;';
         location.reload();
       }
+    });
+  }
+
+  getEmail() {
+    this.loginService.getEmail().subscribe((data) => {
+      console.log(data.email);
     });
   }
 

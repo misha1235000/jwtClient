@@ -50,7 +50,12 @@ mat-card-content {
 }
 
 .logout-button {
-    position: absolute;
-    right: 70px;
-    bottom: 50px;
+    position: fixed;
+    left: 50px;
+    bottom:50px;
+}
+
+.email-button {
+    position: relative;
+    left: 50px;
 }

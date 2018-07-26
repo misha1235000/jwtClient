@@ -2,9 +2,25 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+
+
+function getCookie(name) {
+  let ca: Array<string> = document.cookie.split(';');
+        let caLen: number = ca.length;
+        let cookieName = `${name}=`;
+        let c: string;
+
+        for (let i: number = 0; i < caLen; i += 1) {
+            c = ca[i].replace(/^\s+/g, '');
+            if (c.indexOf(cookieName) == 0) {
+                return c.substring(cookieName.length, c.length);
+            }
+        }
+        return '';
+}
 
 @Injectable()
 export class LoginService {
@@ -28,6 +44,16 @@ export class LoginService {
            .map((data) => {
               return data.json();
            });
+  }
+
+  getEmail(): Observable<any> {
+    let headers = new Headers();
+
+    headers.append('authorization', getCookie('token'));
+    return this.http.get(this.serverUrl, {headers: headers})
+           .map((data) => {
+             return data.json();
+           })
   }
 
   /*
