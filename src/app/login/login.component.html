@@ -22,3 +22,7 @@
   </mat-card>
   <div style="flex:40%"></div>
 </div>
+<div class="mainDiv" *ngIf="isLogged">
+    You are logged in !!!
+    <button mat-raised-button class="logout-button" color="warn" *ngIf="isLogged" (click)="logout()">Logout</button>
+</div>
