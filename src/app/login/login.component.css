@@ -48,3 +48,9 @@ mat-card-content {
     right: 0px;
     bottom: -70px;
 }
+
+.logout-button {
+    position: absolute;
+    right: 70px;
+    bottom: 50px;
+}
